@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<style>
+		@font-face {
+		  font-family: myFirstFont;
+		  src: url(sfarian.ttf);
+		}
+		
+		body, html 
+		{
+			height: 100%;
+			margin: 0;
+			background-image: linear-gradient(#d8e3e1, #000000);
+			background-repeat: no-repeat;
+			display: flex;
+			justify-content: center;
+			overflow: hidden;
+		}
+		
+		#typewriter 
+		{
+			position: relative;
+		}
+		
+		.typewriter h1 {
+			color: #black;
+			background: black;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			font-family: myFirstFont;
+			overflow: hidden; /* Ensures the content is not revealed until the animation */
+			letter-spacing: .05em; /* Adjust as needed */
+			text-shadow: -7px -7px 0px #d8313f;
+			animation-timing-function: linear;
+			animation: typing 8.0s steps(2000, end);
+			white-space: nowrap; /* Keeps the content on a single line */
+			z-index: 30;
+		}
+		
+		.typewriter h2 {
+			z-index: 30;
+			opacity: 0.0;
+			animation-delay: 0s, 0s;
+			color: #black;
+			background: black;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			font-family: myFirstFont;
+			overflow: hidden; 
+			letter-spacing: .05em; 
+			text-shadow: -7px -7px 0px #d8313f;
+			animation-timing-function: linear;
+			animation: typing 4.0s forwards;
+			animation-delay: 4.0s;
+			white-space: nowrap;
+		}
+
+		/* The typing effect */
+		@keyframes typing {
+			0%   { width: 0; }
+			1%  {opacity: 1.0;}
+			100% { opacity: 1.0; width: 100%; }
+		}
+		
+		video {
+			position: absolute;
+		}
+		
+		#img1 {
+			opacity: 0.0;
+			animation: myleft 4s forwards;
+			animation-delay: 6.0s;
+			position: absolute;
+			animation-timing-function: cubic-bezier(0,0,0.58,1);
+		}
+		
+		@keyframes myleft {
+			0%   { width: 0; }
+			1%  {opacity: 1.0;}
+			100% { opacity: 1.0;}
+			from {left: -50%;}
+			to {left: 0;}
+		}
+		
+		#img2 {
+			opacity: 0.0;
+			animation: myright 4s forwards;
+			animation-delay: 6.0s;
+			position: absolute;
+			animation-timing-function: cubic-bezier(0,0,0.58,1);
+		}
+		
+		@keyframes myright {
+			0%   { width: 0; }
+			1%  {opacity: 1.0;}
+			100% { opacity: 1.0;}
+			from {left: 150%}
+			to {left: 50%;}
+		}
+	</style>
+	</head>
+	<body onload="myMove()">
+	
+		<video id="vid1" style="width: 50%; height: 50%;" muted autoplay>
+			<source src="1.mp4" type="video/mp4">
+		</video>
+		
+		<video id="vid2" style="width: 50%; height: 50%;" muted autoplay>
+			<source src="2.mp4" type="video/mp4">
+		</video>
+			
+		<div class="typewriter">
+			<h1 style="font-size: 170px;">&nbsp;&nbsp;&nbsp;SHADIEZ</h1>
+			<h2 style="font-size: 90px;">&nbsp;WITCHER 3 GAMEPLAY</h2>
+		</div>
+		
+		<img id="img1" src="w3Left.png" height="100%" width="50%">
+		<img id="img2" src="w3Right.png" height="100%" width="50%">
+	</body>
+	<script>
+		var elem = document.getElementById("vid1"); 
+		var elem2 = document.getElementById("vid2");
+		function myMove() 
+		{
+			var w = window.innerWidth;
+			var pos = 0;
+			elem.style.top = "0%";
+			elem.style.bottom = "50%";
+			elem2.style.top = "50%";
+			elem2.style.bottom = "100%";
+			var id = setInterval(frame, 3);
+			function frame() 
+			{
+				pos++; 
+				elem.style.left = pos - (w/2) + 'px'; 
+				elem2.style.left = w - pos + 'px'; 
+				myVar = ((w)-pos)/(w/2);
+				elem.style.opacity = myVar;
+				elem2.style.opacity = myVar;
+			}
+		}
+	</script>
+</html>
