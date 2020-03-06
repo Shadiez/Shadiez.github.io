@@ -13,7 +13,7 @@
 
 p {
   text-align: center;
-  font-size: 600px;
+  font-size: 220px;  
   margin-top: 0px;
   font-family: Sfarian;
 }
@@ -21,15 +21,16 @@ p {
 </head>
 <body>
 
-<p id="demo"></p>
+<p id="demo" style="color:#C6239D;"></p>
 
 <script>
 // Update the count down every 1 second
-var mintotal = 5;
+var mintotal = 10;
 var counter = mintotal * 60000;
 var x = setInterval(function() {
   var distance = counter;
-  counter = counter - 1000;
+  if (counter > 999)
+	counter = counter - 1000;
   
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -37,11 +38,17 @@ var x = setInterval(function() {
   // Output the result in an element with id="demo"
   if (seconds < 10)
   {
-	document.getElementById("demo").innerHTML = minutes + ":0" + seconds;
+	if (minutes < 10)
+		document.getElementById("demo").innerHTML = "0" + minutes + ":0" + seconds;
+	else
+		document.getElementById("demo").innerHTML = minutes + ":0" + seconds;
   }
   else
   {
-	document.getElementById("demo").innerHTML = minutes + ":" + seconds;
+	if (minutes < 10)
+		document.getElementById("demo").innerHTML = "0" + minutes + ":" + seconds;
+	else
+		document.getElementById("demo").innerHTML = minutes + ":" + seconds;
   }  
   // If the count down is over, write some text 
   if (distance < 0) {
